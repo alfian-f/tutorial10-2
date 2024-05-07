@@ -21,3 +21,15 @@ println!("listening on port 8080");
 ```
 
 From what I understand, they use the same package called tokio_websockets to set up websocket connections. So, they should also be using the same protocol.
+
+### [2.3] 
+![alt text](assets/image2.png)
+changes were made in:
+```rust
+// server.rs (16)
+.send(Message::text("Alfian's Computer - From server: Welcome to chat! Type a message".to_string()))
+
+// server.rs (30)
+bcast_tx.send(format!("Alfian's Computer - From server: {}: {}", addr, text).into())?;
+```
+I change the string directly at the send point because it is straightforward and efficient. I also did this to minimize the potential errors in other parts of the code.
